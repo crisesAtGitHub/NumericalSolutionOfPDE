@@ -1,16 +1,35 @@
 #include "widget.h"
 #include "ui_widget.h"
 
+
+
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
+    // Creacion del menu y la accion showInfo
+    boxLayout = new QVBoxLayout(this); // Main layout del widget
+    menuBar = new QMenuBar();
+    helpMenu = new QMenu("Menu");
+    showInfoAction = new QAction("Show Info", this);
+    menuBar->addMenu(helpMenu);
+    helpMenu->addAction(showInfoAction);
+    this->layout()->setMenuBar(menuBar);
+
+    connect(showInfoAction, SIGNAL(triggered()), this, SLOT(showInfo()));
 }
 
 Widget::~Widget()
 {
     delete ui;
+}
+
+void Widget::showInfo()
+{
+    QString title = "Ayuda";
+    QString text = "Al dar click sobre la ventana de esta aplicación se agregaran puntos y se mostrará la correspondiente triangulación de Delaunay";
+    QMessageBox::information(this, title, text);
 }
 
 
