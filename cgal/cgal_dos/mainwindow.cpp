@@ -21,11 +21,19 @@ MainWindow::MainWindow(QWidget *parent)
     cdt.insert_constraint(ve, vf);
     cdtPivote=cdt;
     connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(recalcular()));
+    connect(ui->actionInformaci_n, SIGNAL(triggered()), this, SLOT(showInfo()));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::showInfo()
+{
+    QString title = "Información";
+    QString message = "Este programa calcula una malla";
+    QMessageBox::information(this, title, message);
 }
 
 void MainWindow::recalcular()
