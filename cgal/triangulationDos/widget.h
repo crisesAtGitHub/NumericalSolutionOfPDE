@@ -7,6 +7,11 @@
 #include <QDebug>
 #include <CGAL/Exact_predicates_exact_constructions_kernel.h>
 #include <CGAL/Delaunay_triangulation_2.h>
+#include <QVBoxLayout>
+#include <QMenuBar>
+#include <QMenu>
+#include <QMessageBox>
+#include <QString>
 
 typedef CGAL::Exact_predicates_inexact_constructions_kernel K;
 typedef CGAL::Delaunay_triangulation_2<K>         Triangulation;
@@ -27,6 +32,9 @@ public:
     explicit Widget(QWidget *parent = nullptr);
     ~Widget();
 
+public slots:
+    void showInfo();
+
 protected:
     void mousePressEvent(QMouseEvent *event) override;
     void paintEvent(QPaintEvent *event) override;
@@ -34,6 +42,10 @@ protected:
 private:
     Ui::Widget *ui;
     Triangulation t;
+    QVBoxLayout *boxLayout;
+    QMenuBar *menuBar;
+    QMenu *helpMenu;
+    QAction *showInfoAction;
 };
 
 #endif // WIDGET_H
