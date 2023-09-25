@@ -6,11 +6,19 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    connect(ui->actionInformaci_n, SIGNAL(triggered()), this, SLOT(showInfo()));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::showInfo()
+{
+    QString title = "Información";
+        QString message = "Al hacer clic sobre la ventana se agregan puntos y posteriormente lo que se muestra es la envolvente convexa";
+    QMessageBox::information(this, title, message);
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event)

@@ -6,6 +6,8 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QList>
+#include <QMessageBox>
+#include <QString>
 
 #include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
 #include <CGAL/convex_hull_2.h>
@@ -24,6 +26,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+public slots:
+    void showInfo();
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;
